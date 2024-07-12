@@ -11,3 +11,5 @@ List of models used include:
 Techniques used include:
 - Cholesky Decomposition
 - Seasonal Decomposition
+- Partial Autocorrelations & Autocorrelations
+  
