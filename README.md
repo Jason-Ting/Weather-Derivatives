@@ -7,8 +7,6 @@ Models Used:
 - SARIMAX: ARIMA with extended seasonality in dataset and influence of exogenous variables
 - CARMA: Continous time ARIMA Process
 
-<img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
-
 Techniques Used:
 - Cholesky Decomposition: Used to generate multiple correlated Brownian Motions, can be extended to correlate two seperate stochastic differential equations
 - Seasonal Decomposition: Simplified fast-fourier transform using seasonal decomposition
@@ -27,7 +25,12 @@ The key feature of this process is the mean-reversion tendency given by a rate o
 
 A key insight 
 
+<img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
+![ddf](https://github.com/user-attachments/assets/83b624d5-c589-4f0c-9af7-09cc1f820c97)
+
+
 Data Sources: 
+
 
 
 
