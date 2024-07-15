@@ -1,7 +1,6 @@
 # A Rigorous Approach to Valuing Weather Derivatives Through Integrative Time-Series Analysis and Stochastic Weather Forecasting Models
 Project that aims to determine the fair value of weather-related options which are contracts based on Cooling Day Degrees &amp; Heating Day Degrees. 
 
-
 Models Used: 
 - Ornstein Uhlenbeck Process: Mean-reverting stochastic/markov process, with drift and standard brownian motion
 - ARIMA: Standard Autoregressive Integrated Moving Average
@@ -14,17 +13,14 @@ Techniques Used:
 - Partial Autocorrelations & Autocorrelations: Used to determine the order of Autoregressive and Moving Average terms
 
 # Ornstein-Uhlenbeck Model
-
+The Ornstein-Uhlenbeck Model is a continous time Gaussian process governed by the stochastic differential equation: 
 $$
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t
 $$
 
-This stochastic equation is governed by a brownian motion $dW_t$ drawn from a normal distribution
+$dW_t$ The displacement of variable follows a Gaussian process and its increments depend only on the time dependence between them. The brownian increment here ensures the process is markovian and exhibits the traditional randomness at any given moment for a stochastic differential equation (SDE).
 
-
-
-
-
+The key feature of this process is the mean-reversion tendency given by a rate of decay (Rate of Reversion) $$theta$$, making it highly applicable in financial modelling. Its parameters are best estimated through Maximum Likelihood Estimation but in this case of this project was estimated through linear regression and autcorrelation. 
 
 
 
