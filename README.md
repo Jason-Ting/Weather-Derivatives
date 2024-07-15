@@ -11,11 +11,12 @@ Project that aims to determine the fair value of weather-related options which a
 - CARMA: Continous time ARIMA Process
 - Partial Autocorrelations & Autocorrelations: Used to determine the order of Autoregressive and Moving Average terms
 
+# Ornstein-Uhlenbeck Model
 
-Ornstein Uhlenbeck
 $$
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t
 $$
+
 
 
 
