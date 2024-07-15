@@ -13,7 +13,9 @@ Project that aims to determine the fair value of weather-related options which a
 
 
 Ornstein Uhlenbeck
-\[ dX_t = \theta (\mu - X_t) dt + \sigma dW_t \]
+$$
+dX_t = \theta (\mu - X_t) dt + \sigma dW_t
+$$
 
 
 
