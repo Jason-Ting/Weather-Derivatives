@@ -19,11 +19,11 @@ $$
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t
 $$
 
-$dW_t$ The displacement of variable follows a Gaussian process and its increments depend only on the time dependence between them. The brownian increment here ensures the process is markovian and exhibits the traditional randomness at any given moment for a stochastic differential equation (SDE).
+The brownian motion given by the variable $dW_t$ follows a Gaussian process whose increments only depend on the time dependence between them.The brownian increment here ensures the process is markovian and exhibits the traditional randomness at any given moment for a stochastic differential equation (SDE).
 
 The key feature of this process is the mean-reversion tendency given by a rate of decay (Rate of Reversion) $\theta$, making it highly applicable in financial modelling. Its parameters are best estimated through Maximum Likelihood Estimation but in this case of this project was estimated through linear regression and autcorrelation. 
 
-
+A key insight 
 
 Data Sources: 
 
