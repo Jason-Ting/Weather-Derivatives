@@ -19,11 +19,12 @@ $$
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t
 $$
 
-The brownian motion given by the variable $dW_t$ follows a Gaussian process whose increments only depend on the time dependence between them.The brownian increment here ensures the process is markovian and exhibits the traditional randomness at any given moment for a stochastic differential equation (SDE).
+The brownian motion given by the variable $dW_t$ follows a Gaussian process whose increments only depend on the time dependence between them. The brownian increment here ensures the process is markovian and exhibits the traditional randomness at any given moment for a stochastic differential equation (SDE).
 
 The key feature of this process is the mean-reversion tendency given by a rate of decay (Rate of Reversion) $\theta$, making it highly applicable in financial modelling. Its parameters are best estimated through Maximum Likelihood Estimation but in this case of this project was estimated through linear regression and autcorrelation. 
 
 Simulations of the process allow us to model temperature itself as a stochastic process with a mean-reverting property (Weather Seasons) with a rate parameter given by $\theta$ where $\theta$ is calculated as the rate of decay of autocorrelation from lag 0 to the nth lag.
+
 <img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
 
 
