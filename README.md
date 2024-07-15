@@ -19,7 +19,7 @@ $$
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t
 $$
 
-This stochastic equation is governed by a brownian motion $$dW_t$$ drawn from a normal distribution
+This stochastic equation is governed by a brownian motion $dW_t$ drawn from a normal distribution
 
 
 
