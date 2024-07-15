@@ -14,6 +14,7 @@ Techniques Used:
 
 # Ornstein-Uhlenbeck Model
 The Ornstein-Uhlenbeck Model is a continous time Gaussian process governed by the stochastic differential equation: 
+
 $$
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t
 $$
