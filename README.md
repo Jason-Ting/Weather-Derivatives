@@ -24,13 +24,15 @@ The brownian motion given by the variable $dW_t$ follows a Gaussian process whos
 The key feature of this process is the mean-reversion tendency given by a rate of decay (Rate of Reversion) $\theta$, making it highly applicable in financial modelling. Its parameters are best estimated through Maximum Likelihood Estimation but in this case of this project was estimated through linear regression and autcorrelation. 
 
 Simulations of the process allow us to model temperature itself as a stochastic process with a mean-reverting property (Weather Seasons) with a rate parameter given by $\theta$ where $\theta$ is calculated as the rate of decay of autocorrelation from lag 0 to the nth lag.
-
+<br>
 <img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
 
 
 
 
 <img width="1052" alt="Screenshot 2024-07-15 at 4 41 02 PM" src="https://github.com/user-attachments/assets/6a252141-935b-4a60-be99-09c8f75c193f">
+
+
 
 
 Data Sources: 
