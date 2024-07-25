@@ -27,7 +27,11 @@ Simulations of the process allow us to model temperature itself as a stochastic 
 
 <p>&nbsp;</p>
 
+
+The Simualted path forecast is shown below where the temperature follows 
 <img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
+
+
 
 
 
