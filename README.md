@@ -4,7 +4,7 @@ Project that aims to determine the fair value of weather-related options which a
 ## Table of Contents
 
 - [Overview](#models-used)
-- [Data Sources](#data_sources)
+- [Data Sources](#data-sources)
 - [Preliminary Observations](#preliminary-observations)
 - [Stochastic Modeling - Ornstein-Uhlenbeck](#ornstein-uhlenbeck-model)
     - [Correlated Brownian Motions](#correlated-brownian-motions)
@@ -28,29 +28,28 @@ Data for the project conists of CSV file containing the daily maximum and minimu
 
 
 ## Preliminary Observations:
-After some data-cleaning we can begin to do some preliminary analysis of our dataset. Firstly from observing the distribution of our initial raw dataset, its clear that the data has some inherent seasonality to it. To convert the dataset to a stationary process we must initially remove this cycliality. This is done through an additive model based on: 
-$$ 
-Y(t) = T(t) + S(t) + R(t)
-$$
+After some data-cleaning we can begin to do some preliminary analysis of our dataset. Firstly from observing the distribution of our initial raw dataset, its clear that the data has some inherent seasonality to it. To convert the dataset to a stationary process we must initially remove this cycliality. This is done through an additive model that assumes the dataset is composed of a trend, stochastic (residual), and seasonal component. 
+
+### Additive Model
+
+$$ Y(t) = T(t) + S(t) + R(t) $$
 
 Where:
-- $ Y(t) $ is the observed time series at time $ t $.
-- $ T(t) $ is the trend component at time $ t $, representing the long-term progression in the data.
-- $ S(t) $ is the seasonal component at time $ t $, capturing the repeating patterns or cycles.
-- $ R(t) $ is the residual component at time $ t $, representing the random noise or irregular fluctuations.
+- $Y(t)$ is the observed time series at time $t$.
+- $T(t)$ is the trend component at time $t$, representing the long-term progression in the data.
+- $S(t)$ is the seasonal component at time $t$, capturing the repeating patterns or cycles.
+- $R(t)$ is the residual component at time $t$, representing the random noise or irregular fluctuations.
 
+The difficulty in this decomposition is determining the seasonal component as the residual can be determined once the seasonality is found. Because the detrending needs to account for varying time trends, we subtract the values of Y(t) by the rolling mean values instead of just the long-run average. The seasonal component can be obtained through an average of the detrended values for the same day but varying years. The average of these values will provide us the seasonality component.
 
-Firstly we run an ADFuller Test to determine if our data is stationary. 
+After we have detrended our dataset, we should test it for stationarity if we are to do some time-series modelling.
 <p>&nbsp;</p>
 <img width="347" alt="Screenshot 2024-07-26 at 4 42 19 PM" src="https://github.com/user-attachments/assets/55dd7d80-e0ad-4d47-8e26-5b854ee6c8cb">
 <p>&nbsp;</p>
-The output of the test indeed shows that the data follows a stationary process and thus proper time-series modelling techniques can be applied.
+The output of the ADFuller test indeed shows that the data follows a stationary process and thus proper time-series modelling techniques can be applied.
 Secondly, we should determine if our dataset 
 <img width="967" alt="Screenshot 2024-07-26 at 4 44 51 PM" src="https://github.com/user-attachments/assets/b793aaa8-072a-44b5-aadc-10c0e903af10">
 <p>&nbsp;</p>
-
-
-<img width="925" alt="Screenshot 2024-07-26 at 3 19 15 PM" src="https://github.com/user-attachments/assets/fd53cb6f-884b-482d-9a35-052f77a7de1b">
 
 
 ## Ornstein-Uhlenbeck Model
@@ -87,7 +86,9 @@ We can specify the correlation coefficient we wish to have for our two equations
 
 
 
-
+<p>&nbsp;</p>
+<img width="925" alt="Screenshot 2024-07-26 at 3 19 15 PM" src="https://github.com/user-attachments/assets/fd53cb6f-884b-482d-9a35-052f77a7de1b">
+<p>&nbsp;</p>
 
 
 
