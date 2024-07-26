@@ -5,7 +5,8 @@ Project that aims to determine the fair value of weather-related options which a
 
 - [Overview](#models-used)
 - [Data Sources](#data_sources)
-- [Stochastic Modeling](#ornstein-uhlenbeck-model)
+- [Data Cleansing & Preliminary Observations](#preliminary-observations)
+- [Stochastic Modeling - Ornstein-Uhlenbeck](#ornstein-uhlenbeck-model)
     - [Correlated Brownian Motions](#correlated-brownian-motions)
 - [Time-Series Modeling](time-series-modeling)
 
@@ -25,6 +26,10 @@ Techniques Used:
 ## Data Sources:
 Data for the project conists of CSV file containing the daily maximum and minimum temperatures in Abilene Regional Airport in Texas from 1985 - 2024. The location is chosen because of its geographical signficance since many weather futures are traded in the state of Texas.
 
+
+## Preliminary Observations:
+After some data-cleaning the dataset can be 
+![prelim-img](https://github.com/user-attachments/assets/fa91176e-101c-4811-9bbe-5a1d8221fab8)
 
 
 ## Ornstein-Uhlenbeck Model
@@ -48,7 +53,7 @@ The Simualted path forecast is shown below where the temperature follows
 
 
 ### Correlated Brownian Motions: 
-
+A significant 
 
 
 
