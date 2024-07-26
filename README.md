@@ -7,8 +7,14 @@ Project that aims to determine the fair value of weather-related options which a
 - [Data Sources](#data-sources)
 - [Preliminary Observations](#preliminary-observations)
 - [Stochastic Modeling - Ornstein-Uhlenbeck](#ornstein-uhlenbeck-model)
+    - [Closed Form Solutions](#closed-form-solutions)     
     - [Correlated Brownian Motions](#correlated-brownian-motions)
-- [Time-Series Modeling](time-series-modeling)
+- [Time-Series Modeling](#time-series-modeling)
+    - [ARIMA](#arima)
+    - [SARIMAX](#sarimax)
+    - [CARMA](#carma)
+        - [Intuitive Explanations](#intuitive-explanations)
+      
 
 
 ## Models Used: 
@@ -47,13 +53,15 @@ After we have detrended our dataset, we should test it for stationarity if we ar
 <img width="347" alt="Screenshot 2024-07-26 at 4 42 19 PM" src="https://github.com/user-attachments/assets/55dd7d80-e0ad-4d47-8e26-5b854ee6c8cb">
 <p>&nbsp;</p>
 The output of the ADFuller test indeed shows that the data follows a stationary process and thus proper time-series modelling techniques can be applied.
-Secondly, we should determine if our dataset 
+Secondly, we should determine if our dataset still has inter-temporal dependence after detrending. We plot the partial autocorrelations and autocorrelations here. These will also assist us in determining the lag of our time-series models. 
+<p>&nbsp;</p>
 <img width="967" alt="Screenshot 2024-07-26 at 4 44 51 PM" src="https://github.com/user-attachments/assets/b793aaa8-072a-44b5-aadc-10c0e903af10">
 <p>&nbsp;</p>
+Sure enough there is signficant lags above the test-statistic indicating the data contains high lag-dependence.
 
 
 ## Ornstein-Uhlenbeck Model
-The Ornstein-Uhlenbeck Model is a continous time Gaussian process governed by the stochastic differential equation: 
+A key feature of our model is the usage of stochastic weather forecasting that aims to simulate weather temperatures over time. For that, we use an OU model which is a continous time Gaussian process governed by the stochastic differential equation: 
 
 $$
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t
@@ -65,11 +73,12 @@ The key feature of this process is the mean-reversion tendency given by a rate o
 
 Simulations of the process allow us to model temperature itself as a stochastic process with a mean-reverting property (Weather Seasons) with a rate parameter given by $\theta$ where $\theta$ is calculated as the rate of decay of autocorrelation from lag 0 to the nth lag.
 
-<p>&nbsp;</p>
-
 The Simulated path forecast is shown below where the temperature follows a mean-reverting behavior towards its long-term average.
 <p>&nbsp;</p>
 <img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
+
+### Closed Form Solutions: 
+There also lies a closed form solution to the Ornstein-Uhlenbeck Process. The mathematics follow this line of reasoning where 
 
 
 
@@ -81,6 +90,7 @@ We can specify the correlation coefficient we wish to have for our two equations
 
 ## Time Series Modeling
 
+### ARIMA
 <img width="1052" alt="Screenshot 2024-07-15 at 4 41 02 PM" src="https://github.com/user-attachments/assets/6a252141-935b-4a60-be99-09c8f75c193f">
 
 
@@ -90,7 +100,20 @@ We can specify the correlation coefficient we wish to have for our two equations
 <img width="925" alt="Screenshot 2024-07-26 at 3 19 15 PM" src="https://github.com/user-attachments/assets/fd53cb6f-884b-482d-9a35-052f77a7de1b">
 <p>&nbsp;</p>
 
+### SARIMAX
 
+
+### CARMA:
+CARMA is a continous-time autoregressive moving average model that follows the same format of a typical ARIMA/ARMA model with the exception that values are continous and non-discrete. This makes it very valuable when modelling minute time intervals or in-between time intervals that would otherwise require interpolation. The CARMA(2,0) used in the code follows this format: (Where 2 is the order of the autoregressive component) 
+$$
+a_2 \frac{d^2 X_t}{dt^2} + a_1 \frac{dX_t}{dt} + a_0 X_t = Z_t 
+$$
+
+#### Intuitive Explanations
+The reason the formula uses differentiated polynomials for its autoregressive term can be intuitevly explained through several properties.
+1) Taylor Series Expansion: Like a taylor series expansion, the polynomials here represent the order of derivatives and coefficients centered around a certain point used to approximate the curvature of a function. In this case, because we are trying to approximate the seasonality aspect of temperature, which closely resembles a cubic function, the 3rd order derivative to the 1st order derivative is required.
+2) ARIMA in the Limit: If we were to think of the alpha coefficients as the weighted effects of prior lags (AR Beta's) like in a traditional ARIMA process, we can ask what the prior effect of yesterday's value has on today's value. Now if we were to convert the discretized process into a continous time process and ask what the effect is of a second prior on the value right now, in the limit this becomes instantaneous rate of change and is the definition of a derivative. 
+3) Through integrating this process, we can find the path that the temperature takes 
 
 
 References:
