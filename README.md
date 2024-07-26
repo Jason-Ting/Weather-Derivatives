@@ -57,7 +57,7 @@ Secondly, we should determine if our dataset still has inter-temporal dependence
 <p>&nbsp;</p>
 <img width="967" alt="Screenshot 2024-07-26 at 4 44 51 PM" src="https://github.com/user-attachments/assets/b793aaa8-072a-44b5-aadc-10c0e903af10">
 <p>&nbsp;</p>
-Sure enough there is signficant lags above the test-statistic indicating the data contains high lag-dependence.
+Sure enough there is signficant lags above the test-statistic indicating the data contains some inter-temporal dependence.
 
 
 ## Ornstein-Uhlenbeck Model
