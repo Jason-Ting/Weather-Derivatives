@@ -4,15 +4,10 @@ Project that aims to determine the fair value of weather-related options which a
 ## Table of Contents
 
 - [Overview](#models-used)
-- [Data Sources](#Ornstein-Uhlenbeck Model)
+- [Data Sources](#data_sources)
 - [Stochastic Modeling](#ornstein-uhlenbeck-model)
-- [Usage](#usage)
-- [Data Processing](#data-processing)
-- [Analysis and Results](#analysis-and-results)
-- [Visualizations](#visualizations)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+    - [Correlated Brownian Motions](#correlated-brownian-motions)
+- [Time-Series Modeling](time-series-modeling)
 
 
 ## Models Used: 
@@ -25,6 +20,12 @@ Techniques Used:
 - Cholesky Decomposition: Used to generate multiple correlated Brownian Motions, can be extended to correlate two seperate stochastic differential equations
 - Seasonal Decomposition: Simplified fast-fourier transform using seasonal decomposition
 - Partial Autocorrelations & Autocorrelations: Used to determine the order of Autoregressive and Moving Average terms
+
+
+## Data Sources:
+Data for the project conists of CSV file containing the daily maximum and minimum temperatures in Abilene Regional Airport in Texas from 1985 - 2024. The location is chosen because of its geographical signficance since many weather futures are traded in the state of Texas.
+
+
 
 ## Ornstein-Uhlenbeck Model
 The Ornstein-Uhlenbeck Model is a continous time Gaussian process governed by the stochastic differential equation: 
@@ -46,18 +47,20 @@ The Simualted path forecast is shown below where the temperature follows
 <img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
 
 
+### Correlated Brownian Motions: 
 
 
 
 
 
+## Time Series Modeling
 
 <img width="1052" alt="Screenshot 2024-07-15 at 4 41 02 PM" src="https://github.com/user-attachments/assets/6a252141-935b-4a60-be99-09c8f75c193f">
 
 
 
 
-Data Sources: 
+
 
 
 
