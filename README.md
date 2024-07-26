@@ -3,9 +3,9 @@ Project that aims to determine the fair value of weather-related options which a
 
 ## Table of Contents
 
-- [Overview](#Models Used)
+- [Overview](#models-used)
 - [Data Sources](#Ornstein-Uhlenbeck Model)
-- [Stochastic Modeling](#installation)
+- [Stochastic Modeling](#ornstein-uhlenbeck-model)
 - [Usage](#usage)
 - [Data Processing](#data-processing)
 - [Analysis and Results](#analysis-and-results)
@@ -15,7 +15,7 @@ Project that aims to determine the fair value of weather-related options which a
 - [Contact](#contact)
 
 
-Models Used: 
+## Models Used: 
 - Ornstein Uhlenbeck Process: Mean-reverting stochastic/markov process, with drift and standard brownian motion
 - ARIMA: Standard Autoregressive Integrated Moving Average
 - SARIMAX: ARIMA with extended seasonality in dataset and influence of exogenous variables
@@ -26,7 +26,7 @@ Techniques Used:
 - Seasonal Decomposition: Simplified fast-fourier transform using seasonal decomposition
 - Partial Autocorrelations & Autocorrelations: Used to determine the order of Autoregressive and Moving Average terms
 
-# Ornstein-Uhlenbeck Model
+## Ornstein-Uhlenbeck Model
 The Ornstein-Uhlenbeck Model is a continous time Gaussian process governed by the stochastic differential equation: 
 
 $$
