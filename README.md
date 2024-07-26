@@ -5,7 +5,7 @@ Project that aims to determine the fair value of weather-related options which a
 
 - [Overview](#models-used)
 - [Data Sources](#data_sources)
-- [Data Cleansing & Preliminary Observations](#preliminary-observations)
+- [Preliminary Observations](#preliminary-observations)
 - [Stochastic Modeling - Ornstein-Uhlenbeck](#ornstein-uhlenbeck-model)
     - [Correlated Brownian Motions](#correlated-brownian-motions)
 - [Time-Series Modeling](time-series-modeling)
@@ -19,7 +19,7 @@ Project that aims to determine the fair value of weather-related options which a
 
 Techniques Used:
 - Cholesky Decomposition: Used to generate multiple correlated Brownian Motions, can be extended to correlate two seperate stochastic differential equations
-- Seasonal Decomposition: Simplified fast-fourier transform using seasonal decomposition
+- Seasonal Decomposition: Using an additive model to convert a seasonal dataset to a stationary process
 - Partial Autocorrelations & Autocorrelations: Used to determine the order of Autoregressive and Moving Average terms
 
 
@@ -28,8 +28,29 @@ Data for the project conists of CSV file containing the daily maximum and minimu
 
 
 ## Preliminary Observations:
-After some data-cleaning the dataset can be 
-![prelim-img](https://github.com/user-attachments/assets/fa91176e-101c-4811-9bbe-5a1d8221fab8)
+After some data-cleaning we can begin to do some preliminary analysis of our dataset. Firstly from observing the distribution of our initial raw dataset, its clear that the data has some inherent seasonality to it. To convert the dataset to a stationary process we must initially remove this cycliality. This is done through an additive model based on: 
+$$ 
+Y(t) = T(t) + S(t) + R(t)
+$$
+
+Where:
+- $ Y(t) $ is the observed time series at time $ t $.
+- $ T(t) $ is the trend component at time $ t $, representing the long-term progression in the data.
+- $ S(t) $ is the seasonal component at time $ t $, capturing the repeating patterns or cycles.
+- $ R(t) $ is the residual component at time $ t $, representing the random noise or irregular fluctuations.
+
+
+Firstly we run an ADFuller Test to determine if our data is stationary. 
+<p>&nbsp;</p>
+<img width="347" alt="Screenshot 2024-07-26 at 4 42 19 PM" src="https://github.com/user-attachments/assets/55dd7d80-e0ad-4d47-8e26-5b854ee6c8cb">
+<p>&nbsp;</p>
+The output of the test indeed shows that the data follows a stationary process and thus proper time-series modelling techniques can be applied.
+Secondly, we should determine if our dataset 
+<img width="967" alt="Screenshot 2024-07-26 at 4 44 51 PM" src="https://github.com/user-attachments/assets/b793aaa8-072a-44b5-aadc-10c0e903af10">
+<p>&nbsp;</p>
+
+
+<img width="925" alt="Screenshot 2024-07-26 at 3 19 15 PM" src="https://github.com/user-attachments/assets/fd53cb6f-884b-482d-9a35-052f77a7de1b">
 
 
 ## Ornstein-Uhlenbeck Model
@@ -47,14 +68,15 @@ Simulations of the process allow us to model temperature itself as a stochastic 
 
 <p>&nbsp;</p>
 
-
-The Simualted path forecast is shown below where the temperature follows 
+The Simulated path forecast is shown below where the temperature follows a mean-reverting behavior towards its long-term average.
+<p>&nbsp;</p>
 <img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
 
 
-### Correlated Brownian Motions: 
-A significant 
 
+### Correlated Brownian Motions: 
+A significant modeling tool that is used frequently when dealing with financial derivatives is the need to create correleated brownian motions. This arises frequently in situations when an assets price follows a stochastic process and another variable within the pricing equation itself also follows its own stochastic process. This is observed keenly in options pricing like the Heston model or in interest rate models. For our case, we can generate two correlated brownian motions that help to create the required equations. This can be done through a cholesky decomposition of a correlation matrix. 
+We can specify the correlation coefficient we wish to have for our two equations in this case lets say p = 0.7. Our correlation matrix then would look like this: [[1.0, 0.7], [0.7, 1.0]]. 
 
 
 
