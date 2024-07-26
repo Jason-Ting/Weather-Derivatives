@@ -1,6 +1,20 @@
 # A Rigorous Approach to Valuing Weather Derivatives Through Integrative Time-Series Analysis and Stochastic Weather Forecasting Models
 Project that aims to determine the fair value of weather-related options which are contracts based on Cooling Day Degrees &amp; Heating Day Degrees. 
 
+## Table of Contents
+
+- [Overview](#Models Used)
+- [Data Sources](#Ornstein-Uhlenbeck Model)
+- [Stochastic Modeling](#installation)
+- [Usage](#usage)
+- [Data Processing](#data-processing)
+- [Analysis and Results](#analysis-and-results)
+- [Visualizations](#visualizations)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+
 Models Used: 
 - Ornstein Uhlenbeck Process: Mean-reverting stochastic/markov process, with drift and standard brownian motion
 - ARIMA: Standard Autoregressive Integrated Moving Average
