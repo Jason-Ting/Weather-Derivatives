@@ -85,7 +85,9 @@ There also lies a closed form solution to the Ornstein-Uhlenbeck Process. The ma
 ### Correlated Brownian Motions: 
 A significant modeling tool that is used frequently when dealing with financial derivatives is the need to create correleated brownian motions. This arises frequently in situations when an assets price follows a stochastic process and another variable within the pricing equation itself also follows its own stochastic process. This is observed keenly in options pricing like the Heston model or in interest rate models. For our case, we can generate two correlated brownian motions that help to create the required equations. This can be done through a cholesky decomposition of a correlation matrix. 
 We can specify the correlation coefficient we wish to have for our two equations in this case lets say p = 0.7. Our correlation matrix then would look like this: [[1.0, 0.7], [0.7, 1.0]]. 
-
+<p>&nbsp;</p>
+<img width="637" alt="Screenshot 2024-07-27 at 7 31 39 PM" src="https://github.com/user-attachments/assets/72473936-e3f7-4774-8d49-e7bd933cce65">
+<p>&nbsp;</p>
 
 
 ## Time Series Modeling
