@@ -7,11 +7,9 @@ Project that aims to determine the fair value of weather-related options which a
 - [Data Sources](#data-sources)
 - [Preliminary Observations](#preliminary-observations)
 - [Stochastic Modeling - Ornstein-Uhlenbeck](#ornstein-uhlenbeck-model)
-    - [Closed Form Solutions](#closed-form-solutions)     
     - [Correlated Brownian Motions](#correlated-brownian-motions)
 - [Time-Series Modeling](#time-series-modeling)
-    - [ARIMA](#arima)
-    - [SARIMAX](#sarimax)
+    - [SARIMAX](#sarima)
     - [CARMA](#carma)
         - [Intuitive Explanations](#intuitive-explanations)
       
@@ -47,6 +45,9 @@ Where:
 - $R(t)$ is the residual component at time $t$, representing the random noise or irregular fluctuations.
 
 The difficulty in this decomposition is determining the seasonal component as the residual can be determined once the seasonality is found. Because the detrending needs to account for varying time trends, we subtract the values of Y(t) by the rolling mean values instead of just the long-run average. The seasonal component can be obtained through an average of the detrended values for the same day but varying years. The average of these values will provide us the seasonality component.
+<p>&nbsp;</p>
+<img width="1313" alt="Screenshot 2024-07-30 at 12 02 44 AM" src="https://github.com/user-attachments/assets/59c9307e-bb3b-4c19-962c-0edec6909de4">
+<p>&nbsp;</p>
 
 After we have detrended our dataset, we should test it for stationarity if we are to do some time-series modelling.
 <p>&nbsp;</p>
@@ -81,43 +82,57 @@ The Simulated path forecast is shown below where the temperature follows a mean-
 
 ### Correlated Brownian Motions: 
 A significant modeling tool that is used frequently when dealing with financial derivatives is the need to create correleated brownian motions. This arises frequently in situations when an assets price follows a stochastic process and another variable within the pricing equation itself also follows its own stochastic process. This is observed keenly in options pricing like the Heston model or in interest rate models. For our case, we can generate two correlated brownian motions that help to create the required equations. This can be done through a cholesky decomposition of a correlation matrix. 
-We can specify the correlation coefficient we wish to have for our two equations in this case lets say p = 0.7. Our correlation matrix then would look like this: [[1.0, 0.7], [0.7, 1.0]]. 
+We can specify the correlation coefficient we wish to have for our two equations in this case lets say p = 0.7, and we can generate the correlation matrix as such: 
+
+$$
+\mathbf{C} = \begin{pmatrix}
+1 & 0.7 \\
+0.7 & 1
+\end{pmatrix}
+$$
+
 <p>&nbsp;</p>
 <img width="637" alt="Screenshot 2024-07-27 at 7 31 39 PM" src="https://github.com/user-attachments/assets/72473936-e3f7-4774-8d49-e7bd933cce65">
 <p>&nbsp;</p>
 
 
 ## Time Series Modeling
-
-### ARIMA
-<img width="1052" alt="Screenshot 2024-07-15 at 4 41 02 PM" src="https://github.com/user-attachments/assets/6a252141-935b-4a60-be99-09c8f75c193f">
-
-
+### SARIMA
+Seasonal Autoregressive Integrated Moving Average is an extended form of an ARIMA model with an addition to account for seasonal variation encapsulated by two sets of AR, MA and Differencing terms (p,d,q) & (P,D,Q,s) -- the latter accounts for trends that occur within an interval i.e. every 12 months and the former covering the trends from month-to-month within the inter-year period. The results of our SARIMA(1,1,1)(1,1,1,12months) model are shown below:
+<p>&nbsp;</p>
+<img width="779" alt="Screenshot 2024-07-30 at 12 17 24 AM" src="https://github.com/user-attachments/assets/8064f941-d8cf-42ad-976f-a107d9036a23">
+<p>&nbsp;</p>
+All terms are signifcant and unsuprisingly,the temperature from one lagged period positively and signficantly affects the current period. The same can be said for the seasonal AR terms, although to a lesser magnitude with coefficient of +0.0154. This indicates that effect of the temperature 12 months ago does have some predictive power (due to the seasonality of course) on the temperature today. The MA terms being signficant also demonstrates that past temperature shocks do have substantial effect on temperature today.
 
 
 <p>&nbsp;</p>
 <img width="925" alt="Screenshot 2024-07-26 at 3 19 15 PM" src="https://github.com/user-attachments/assets/fd53cb6f-884b-482d-9a35-052f77a7de1b">
 <p>&nbsp;</p>
 
-### SARIMAX
 
 
 ### CARMA:
 CARMA is a continous-time autoregressive moving average model that follows the same format of a typical ARIMA/ARMA model with the exception that values are continous and non-discrete. This makes it very valuable when modelling minute time intervals or in-between time intervals that would otherwise require interpolation. The CARMA(2,0) used in the code follows this format: (Where 2 is the order of the autoregressive component) 
+
 $$
 a_2 \frac{d^2 X_t}{dt^2} + a_1 \frac{dX_t}{dt} + a_0 X_t = Z_t 
 $$
 
+
 #### Intuitive Explanations
 The reason the formula uses differentiated polynomials for its autoregressive term can be intuitevly explained through several properties.
 1) Taylor Series Expansion: Like a taylor series expansion, the polynomials here represent the order of derivatives and coefficients centered around a certain point used to approximate the curvature of a function. In this case, because we are trying to approximate the seasonality aspect of temperature, which closely resembles a cubic function, the 3rd order derivative to the 1st order derivative is required.
-2) ARIMA in the Limit: If we were to think of the alpha coefficients as the weighted effects of prior lags (AR Beta's) like in a traditional ARIMA process, we can ask what the prior effect of yesterday's value has on today's value. Now if we were to convert the discretized process into a continous time process and ask what the effect is of a second prior on the value right now, in the limit this becomes instantaneous rate of change and is the definition of a derivative. 
-3) Through integrating this process, we can find the path that the temperature takes 
+2) ARIMA in the Limit: If we were to think of the alpha coefficients as the weighted effects of prior lags (AR Beta's) like in a traditional ARIMA process, we can ask what the prior effect of yesterday's value has on today's value. Now if we were to convert the discretized process into a continous time process and ask what the effect is of a second prior on the value right now, in the limit this becomes instantaneous rate of change and arrives at the definition of a derivative. 
+The results from the CARMA process solved from Euler discretization is shown below.
+
+<p>&nbsp;</p>
+<img width="975" alt="Screenshot 2024-07-30 at 12 04 38 AM" src="https://github.com/user-attachments/assets/5d67c36c-2276-4556-97b6-cc9b7ff9c609">
+<p>&nbsp;</p>
 
 
-References:
-
-
+<p>&nbsp;</p>
+<img width="1052" alt="Screenshot 2024-07-15 at 4 41 02 PM" src="https://github.com/user-attachments/assets/6a252141-935b-4a60-be99-09c8f75c193f">
+<p>&nbsp;</p>
 
 
 
