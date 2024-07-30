@@ -76,10 +76,7 @@ Simulations of the process allow us to model temperature itself as a stochastic 
 The Simulated path forecast is shown below where the temperature follows a mean-reverting behavior towards its long-term average.
 <p>&nbsp;</p>
 <img width="419" alt="Screenshot 2024-07-15 at 4 16 16 PM" src="https://github.com/user-attachments/assets/1d8ed57b-8eea-4f4e-9234-c642b70b3165">
-
-### Closed Form Solutions: 
-There also lies a closed form solution to the Ornstein-Uhlenbeck Process. The mathematics follow this line of reasoning where 
-
+<p>&nbsp;</p>
 
 
 ### Correlated Brownian Motions: 
