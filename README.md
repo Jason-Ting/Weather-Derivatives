@@ -25,6 +25,7 @@ Techniques Used:
 - Cholesky Decomposition: Used to generate multiple correlated Brownian Motions, can be extended to correlate two seperate stochastic differential equations
 - Seasonal Decomposition: Using an additive model to convert a seasonal dataset to a stationary process
 - Partial Autocorrelations & Autocorrelations: Used to determine the order of Autoregressive and Moving Average terms
+- Mean Reversion Parameter Calibration: Using decay of autocorrelations 
 
 
 ## Data Sources:
